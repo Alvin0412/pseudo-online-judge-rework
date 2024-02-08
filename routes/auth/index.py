@@ -21,9 +21,6 @@ from utils.settings import SERVER_PORT, SERVER_IP_ADDRESS, \
 from .schema import TokenSchema, RegistrationSchema
 from utils.logger import logger
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
 router = APIRouter(
     prefix='/auth'
 )

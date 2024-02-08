@@ -1,3 +1,5 @@
+# just import `logger` from this module
+
 import typing
 import logging
 
@@ -18,9 +20,11 @@ def ensure_log_dir(log_dir: Path):
 
 def setup_logger():
     # Ensure the logger directory exists
-    year = datetime.now().strftime("%Y")
-    month = datetime.now().strftime("%m")
-    log_dir = BASE_LOG_DIR / year / month
+    now = datetime.now()
+    year = now.strftime("%Y")
+    month = now.strftime("%m")
+    day = now.strftime("%d")
+    log_dir = BASE_LOG_DIR / year / month / day
     ensure_log_dir(log_dir)
 
     # Define log file path

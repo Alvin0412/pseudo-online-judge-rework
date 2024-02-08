@@ -1,0 +1,16 @@
+
+    DECLARE a:STRING
+    OUTPUT "Hello, World!"
+    INPUT a
+    OUTPUT "Hello, World!
+" & a
+    OUTPUT "Hello, World!
+" & a
+    OUTPUT "Hello, World!
+" & a
+    OUTPUT "Hello, World!
+" & a
+    INPUT a
+    OUTPUT "Hello, World!
+" & a
+    

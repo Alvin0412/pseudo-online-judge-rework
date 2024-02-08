@@ -1,2 +1,7 @@
 /log/
 /utils/settings.py
+
+/services/code_executor/Buffer
+/services/code_executor/Pseudo
+
+**/__pycache__/**
