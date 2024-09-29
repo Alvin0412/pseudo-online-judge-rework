@@ -8,6 +8,7 @@ app = Celery('services.main',
              broker=broker_url,
              backend=broker_url)
 
+
 def start_celery(concurrency=10):
     argv = [
         'worker',

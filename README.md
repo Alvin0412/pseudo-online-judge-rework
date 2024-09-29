@@ -37,6 +37,9 @@ Building on the solid foundation of the original Pseudo-Online-Judge, the Rework
 
 4. **Receive Feedback**: Get more comprehensive feedback to understand your strengths and areas for improvement.
 
+
+## How to run
+`uvicorn main:app --reload`
 ## Contributing
 
 The Rework of **Pseudo-Online-Judge** thrives on community contributions. If you're a developer interested in enhancing the platform's functionalities or an educator with insights into potential features, your input is invaluable. Contribute by opening issues or pull requests on this repository.

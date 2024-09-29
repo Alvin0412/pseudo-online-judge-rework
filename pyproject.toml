@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "pseudo-online-judge-rework"
+version = "0.1.0"
+description = "A rework version of online judge that use the CAIE Pseudocodecode"
+authors = ["Alvin0412 <wentai412@163.com>"]
+license = "GPL 3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.110.0"
+aiosmtplib = "^3.0.1"
+loguru = "^0.7.2"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+SQLAlchemy = "^2.0.27"
+celery = "^5.3.6"
+pydantic = {extras = ["email"], version = "^2.6.3"}
+jose = "^1.0.0"
+uvicorn = {extras = ["standard"], version = "^0.27.1"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+pydentic = {extras = ["email"], version = "^0.0.1.dev3"}
+python-multipart = "^0.0.9"
+psutil = "^5.9.8"
+redis = "^5.0.3"
+websockets = "^12.0"
+fastapi-sqlalchemy = "^0.2.1"
+pycryptodome = "^3.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

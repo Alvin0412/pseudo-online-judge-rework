@@ -1,3 +1,37 @@
+"""Author: Alvin"""
+"""
+This module provides authentication functionalities for a FastAPI application, including user registration, 
+verification, and login processes. The key functions and their purposes are outlined below:
+
+1. send_verify_email(user: auth.UserSchema):
+    - Asynchronously sends a verification email to a user upon registration.
+    - Constructs a verification link and sends it via an HTML-formatted email.
+    - Uses the `aiosmtplib` library to handle asynchronous email sending.
+
+2. resend_verification(email: str, session: database.Session, background: BackgroundTasks):
+    - Endpoint to resend the verification email to a user who has not yet verified their account.
+    - Checks if the user exists, if they are already verified, and if they have recently requested another email.
+    - Updates the user's `updated_at` timestamp and triggers `send_verify_email` in the background.
+
+3. verify_user(auth_code: str, uid: int, session: database.Session):
+    - Endpoint to verify a user's account via a provided authentication code.
+    - Validates the code against the one generated during registration.
+    - Marks the user as verified in the database and returns an access token.
+
+4. register(registration_data: RegistrationSchema, session: database.Session, background: BackgroundTasks): - 
+Endpoint to register a new user. - Checks if the email is already registered, creates a new user account, hashes the 
+password, and sends a verification email. - Commits the new user to the database and triggers `send_verify_email` in 
+the background.
+
+5. login_for_access_token(form_data: OAuth2PasswordRequestForm, session: database.Session, login_type: Literal["uid", 
+"email"] = "email"): - Endpoint to log in a user and provide an access token. - Authenticates the user by email or 
+UID based on the provided login type. - Returns a JWT access token upon successful authentication.
+
+6. get_user_details(user: auth.UserSchema):
+    - Endpoint to fetch and return details of the logged-in user.
+    - Requires the user to be authenticated.
+"""
+
 import pathlib
 from datetime import datetime, timedelta
 from datetime import datetime, timedelta
@@ -140,7 +174,7 @@ async def verify_user(
 ):
     try:
         found_user: User = session.query(User).get(uid)
-        now = datetime.utcnow()
+        now = datetime.now()
         if found_user.verified:
             raise ValueError("User already verified!")
         if (now - found_user.created_at) > timedelta(minutes=10):
@@ -191,7 +225,8 @@ async def register(
         logger.info(f"Successfully created an unverified user account: {new_user_schema.model_dump()}")
     except Exception as e:
         session.rollback()
-        logger.error(f"Failed to register user with registration_data of {registration_data.model_dump()} due to {e.args}")
+        logger.error(
+            f"Failed to register user with registration_data of {registration_data.model_dump()} due to {e.args}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Registration failed: {e.args}")
     return {"message": "Please check your email to verify your account!"}
 

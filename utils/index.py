@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
 
-
 cheerful_messages = [
     "Dive deep into this problem – your solution awaits!",
     "Every problem is an opportunity in disguise. Tackle it!",
@@ -33,6 +32,8 @@ cheerful_messages = [
     "The best way to predict the future is to code it.",
     "Remember why you started. Don't give up, find a way!"
 ]
+
+
 def digitalize_problem_id(raw_pid: str | int):
     if type(raw_pid) is int:
         return raw_pid
@@ -44,3 +45,4 @@ def digitalize_problem_id(raw_pid: str | int):
 
 # async def range_check_problem_id(pid: int, session: Session):
 #
+

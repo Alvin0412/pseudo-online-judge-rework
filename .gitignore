@@ -5,3 +5,5 @@
 /services/code_executor/Pseudo
 
 **/__pycache__/**
+
+/front_end/**

@@ -112,7 +112,7 @@ async def get_current_user(
         detail="Invalid credentials!",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    print(datetime.utcnow())
+    print(datetime.now())
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[JWT_ALGORITHM])
         uid: str = payload.get("sub")
